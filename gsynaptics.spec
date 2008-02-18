@@ -1,6 +1,6 @@
 %define name gsynaptics
 %define version 0.9.13
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: Tool for Synaptics touchpad driver
 Name: %{name}
@@ -23,12 +23,12 @@ GSynaptics is a setting tool for Synaptics touchpad driver.
 cp -f %{SOURCE1} data
 
 %build
-%configure
+%configure2_5x
 %make
 
 %install
 rm -rf %{buildroot}
-%makeinstall
+%makeinstall_std
 %find_lang %{name}
 
 %clean
