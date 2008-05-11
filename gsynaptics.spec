@@ -1,6 +1,6 @@
 %define name gsynaptics
-%define version 0.9.13
-%define release %mkrel 2
+%define version 0.9.14
+%define release %mkrel 1
 
 Summary: Tool for Synaptics touchpad driver
 Name: %{name}
@@ -9,7 +9,7 @@ Release: %{release}
 Source0: http://globalbase.dl.sourceforge.jp/gsynaptics/28322/%{name}-%{version}.tar.gz
 # non-corrupted icon from CVS
 Source1: http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/*checkout*/gsynaptics/gsynaptics/data/touchpad.png
-License: GPL
+License: GPLv2+
 Group: System/Configuration/Hardware
 Url: http://gsynaptics.sourceforge.jp/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
