@@ -1,6 +1,6 @@
 %define name gsynaptics
 %define version 0.9.14
-%define release %mkrel 2
+%define release %mkrel 3
 
 Summary: Tool for Synaptics touchpad driver
 Name: %{name}
@@ -9,6 +9,11 @@ Release: %{release}
 Source0: http://globalbase.dl.sourceforge.jp/gsynaptics/28322/%{name}-%{version}.tar.gz
 # non-corrupted icon from CVS
 Source1: http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/*checkout*/gsynaptics/gsynaptics/data/touchpad.png
+Patch0: gsynaptics-0.9.14-do-not-set-zero.patch
+Patch1: gsynaptics-0.9.14-dot-fixes.patch
+Patch2: gsynaptics-0.9.14-fix-desktop-file.patch
+patch3: gsynaptics-0.9.14-fix-docbook.patch
+Patch4: gsynaptics-0.9.14-build-filename.patch
 License: GPLv2+
 Group: System/Configuration/Hardware
 Url: http://gsynaptics.sourceforge.jp/
@@ -21,6 +26,11 @@ GSynaptics is a setting tool for Synaptics touchpad driver.
 %prep
 %setup -q
 cp -f %{SOURCE1} data
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 %configure2_5x
