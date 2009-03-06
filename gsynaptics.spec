@@ -1,6 +1,6 @@
 %define name gsynaptics
 %define version 0.9.14
-%define release %mkrel 3
+%define release %mkrel 4
 
 Summary: Tool for Synaptics touchpad driver
 Name: %{name}
@@ -12,8 +12,15 @@ Source1: http://cvs.sourceforge.jp/cgi-bin/viewcvs.cgi/*checkout*/gsynaptics/gsy
 Patch0: gsynaptics-0.9.14-do-not-set-zero.patch
 Patch1: gsynaptics-0.9.14-dot-fixes.patch
 Patch2: gsynaptics-0.9.14-fix-desktop-file.patch
-patch3: gsynaptics-0.9.14-fix-docbook.patch
+Patch3: gsynaptics-0.9.14-fix-docbook.patch
 Patch4: gsynaptics-0.9.14-build-filename.patch
+Patch5: gsynaptics-0.9.14-format-security.patch
+
+# (cg) Some patches from fedora
+Patch100: gsynaptics-0.9.14-fix-tap-statecheck.patch
+Patch101: gsynaptics-0.9.14-enable-tapping.patch
+Patch102: gsynaptics-0.9.14-dont-reset-taptime.patch
+
 License: GPLv2+
 Group: System/Configuration/Hardware
 Url: http://gsynaptics.sourceforge.jp/
@@ -31,6 +38,11 @@ cp -f %{SOURCE1} data
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+
+%patch100 -p1
+%patch101 -p1
+%patch102 -p1
 
 %build
 %configure2_5x
