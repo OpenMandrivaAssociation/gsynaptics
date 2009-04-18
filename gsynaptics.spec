@@ -1,6 +1,6 @@
 %define name gsynaptics
 %define version 0.9.14
-%define release %mkrel 4
+%define release %mkrel 5
 
 Summary: Tool for Synaptics touchpad driver
 Name: %{name}
@@ -20,6 +20,10 @@ Patch5: gsynaptics-0.9.14-format-security.patch
 Patch100: gsynaptics-0.9.14-fix-tap-statecheck.patch
 Patch101: gsynaptics-0.9.14-enable-tapping.patch
 Patch102: gsynaptics-0.9.14-dont-reset-taptime.patch
+
+# (cg) Fix synclinet usage
+Patch6: gsynaptics-0.9.14-use-synclient-shm.patch
+
 
 License: GPLv2+
 Group: System/Configuration/Hardware
@@ -43,6 +47,8 @@ cp -f %{SOURCE1} data
 %patch100 -p1
 %patch101 -p1
 %patch102 -p1
+
+%patch6 -p1
 
 %build
 %configure2_5x
