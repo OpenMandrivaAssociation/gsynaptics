@@ -1,0 +1,27 @@
+From 19e27193f5e3bf521f74b656fa83dc27636d0fa1 Mon Sep 17 00:00:00 2001
+From: Peter Hutterer <peter.hutterer@who-t.net>
+Date: Sun, 1 Mar 2009 09:36:38 +1000
+Subject: [PATCH] Don't reset the tap time when disabling tapping
+
+Signed-off-by: Peter Hutterer <peter.hutterer@who-t.net>
+---
+ src/main.c |    3 ---
+ 1 files changed, 0 insertions(+), 3 deletions(-)
+
+diff --git a/src/main.c b/src/main.c
+index 5a532f5..71c1570 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -221,9 +221,6 @@ cb_tapping_toggled (GtkToggleButton *button, GladeXML *dialog)
+ 	
+ 	synaptics = g_object_get_qdata (G_OBJECT(dialog), synaptics_quark);
+ 
+-	if (!check)
+-		time = 0;
+-
+ 	g_synaptics_set_tap_time (synaptics, time);
+         /* Default 1/2/3 finger tap settings */
+ 	g_synaptics_set_button_for_tap(synaptics, OneFinger, check ? 1 : 0);
+-- 
+1.6.0.6
+

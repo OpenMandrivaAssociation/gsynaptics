@@ -1,0 +1,11 @@
+--- gsynaptics-0.9.14/src/main.c.orig	2009-03-06 01:13:49.000000000 +0000
++++ gsynaptics-0.9.14/src/main.c	2009-03-06 01:15:03.000000000 +0000
+@@ -86,7 +86,7 @@
+ 		gdk_spawn_command_line_on_screen (screen, command, &error);
+ 		if (error != NULL)
+ 		{
+-			g_warning (error->message);
++			g_warning ("%s", error->message);
+ 			g_error_free (error);
+ 		}
+ 		g_free (command);

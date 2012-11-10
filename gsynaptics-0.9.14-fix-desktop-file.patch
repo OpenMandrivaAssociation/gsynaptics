@@ -1,0 +1,43 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## fix-desktop-file.dpatch by Michal Čihař <nijel@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Adjust desktop files to match current specification (Encoding should not be used).
+
+@DPATCH@
+diff -urNad gsynaptics-0.9.14~/data/gsynaptics-init.desktop gsynaptics-0.9.14/data/gsynaptics-init.desktop
+--- gsynaptics-0.9.14~/data/gsynaptics-init.desktop	2008-02-28 23:34:57.000000000 +0100
++++ gsynaptics-0.9.14/data/gsynaptics-init.desktop	2008-05-10 18:58:06.000000000 +0200
+@@ -1,5 +1,4 @@
+ [Desktop Entry]
+-Encoding=UTF-8
+ Name=Touchpad
+ Name[el]=Touchpad
+ Name[es]=Touchpad
+diff -urNad gsynaptics-0.9.14~/data/gsynaptics-init.desktop.in.in gsynaptics-0.9.14/data/gsynaptics-init.desktop.in.in
+--- gsynaptics-0.9.14~/data/gsynaptics-init.desktop.in.in	2008-02-28 05:16:16.000000000 +0100
++++ gsynaptics-0.9.14/data/gsynaptics-init.desktop.in.in	2008-05-10 18:58:09.000000000 +0200
+@@ -1,5 +1,4 @@
+ [Desktop Entry]
+-Encoding=UTF-8
+ _Name=Touchpad
+ _Comment=Set your touchpad preferences
+ Exec=gsynaptics-init --sm-disable
+diff -urNad gsynaptics-0.9.14~/data/gsynaptics.desktop gsynaptics-0.9.14/data/gsynaptics.desktop
+--- gsynaptics-0.9.14~/data/gsynaptics.desktop	2008-02-28 23:34:57.000000000 +0100
++++ gsynaptics-0.9.14/data/gsynaptics.desktop	2008-05-10 18:57:59.000000000 +0200
+@@ -1,5 +1,4 @@
+ [Desktop Entry]
+-Encoding=UTF-8
+ Name=Touchpad
+ Name[el]=Touchpad
+ Name[es]=Touchpad
+diff -urNad gsynaptics-0.9.14~/data/gsynaptics.desktop.in.in gsynaptics-0.9.14/data/gsynaptics.desktop.in.in
+--- gsynaptics-0.9.14~/data/gsynaptics.desktop.in.in	2008-02-28 05:16:16.000000000 +0100
++++ gsynaptics-0.9.14/data/gsynaptics.desktop.in.in	2008-05-10 18:57:55.000000000 +0200
+@@ -1,5 +1,4 @@
+ [Desktop Entry]
+-Encoding=UTF-8
+ _Name=Touchpad
+ _Comment=Set your touchpad preferences
+ Exec=gsynaptics

@@ -1,0 +1,71 @@
+From 74f1fae3b226ecc458c9cbcac75ac45f8a76aa55 Mon Sep 17 00:00:00 2001
+From: Peter Hutterer <peter.hutterer@who-t.net>
+Date: Sun, 1 Mar 2009 09:14:46 +1000
+Subject: [PATCH] Enable default 1-3-2 button mapping when tapping is enabled.
+
+Signed-off-by: Peter Hutterer <peter.hutterer@who-t.net>
+---
+ gsynaptics.c |   31 +++++++++++++++++++++++++++++++
+ main.c       |    4 ++++
+ 2 files changed, 35 insertions(+), 0 deletions(-)
+
+diff --git a/src/gsynaptics.c b/src/gsynaptics.c
+index 2232112..2a891ef 100644
+--- a/src/gsynaptics.c
++++ b/src/gsynaptics.c
+@@ -889,6 +889,37 @@ g_synaptics_set_button_for_tap (GSynaptics *synaptics, TapType tap, Button butto
+ 	GSynapticsPrivate *priv = G_SYNAPTICS_GET_PRIVATE (synaptics);
+ 	if (!g_synaptics_is_valid(synaptics))
+ 		return;
++
++	if (priv->synclient)
++	{
++	    gchar *command;
++
++	    if (tap >= OneFinger)
++	    {
++		command = g_strdup_printf ("synclient TapButton%d=%d",
++			tap - OneFinger + 1, button);
++	    } else
++	    {
++		char *corner;
++		switch (tap)
++		{
++		    case RightTop: corner ="RT"; break;
++		    case LeftTop: corner ="LT"; break;
++		    case RightBottom: corner ="RB"; break;
++		    case LeftBottom: corner ="LB"; break;
++		    default:
++				     return;
++		}
++		command = g_strdup_printf ("synclient %sCornerButton=%d",
++			corner, button);
++	    }
++	    g_spawn_command_line_async (command, NULL);
++	    g_free (command);
++	}
++	else
++	{
++	    SYNSHM(synaptics)->tap_action[tap] = button;
++	}
+ }
+ 
+ void
+diff --git a/src/main.c b/src/main.c
+index d187c1c..5a532f5 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -225,6 +225,10 @@ cb_tapping_toggled (GtkToggleButton *button, GladeXML *dialog)
+ 		time = 0;
+ 
+ 	g_synaptics_set_tap_time (synaptics, time);
++        /* Default 1/2/3 finger tap settings */
++	g_synaptics_set_button_for_tap(synaptics, OneFinger, check ? 1 : 0);
++	g_synaptics_set_button_for_tap(synaptics, TwoFingers, check ? 3 : 0);
++	g_synaptics_set_button_for_tap(synaptics, ThreeFingers, check ? 2 : 0);
+ 	gconf_client_set_int (gconf, MAXTAPTIME_KEY, time, NULL);
+ }
+ 
+-- 
+1.6.0.6
+

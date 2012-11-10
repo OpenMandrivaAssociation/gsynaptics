@@ -1,0 +1,32 @@
+From f8d1084994e44b1da629b9c3ac6d285033521d1b Mon Sep 17 00:00:00 2001
+From: Peter Hutterer <peter.hutterer@who-t.net>
+Date: Sun, 1 Mar 2009 08:45:49 +1000
+Subject: [PATCH] Tapping is enabled if MaxTapTime is > 0 and at least TapButton1 is > 0.
+
+---
+ src/gsynaptics.c      |    6 ++++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/gsynaptics.c b/src/gsynaptics.c
+index 3420402..2b03e52 100644
+--- a/src/gsynaptics.c
++++ b/src/gsynaptics.c
+@@ -227,11 +227,13 @@ g_synaptics_is_tapping_enabled (GSynaptics *synaptics)
+ 
+ 	if (priv->synclient)
+ 	{
+-		return g_synaptics_get_value_from_synclient ("MaxTapTime") > 0;
++		return (g_synaptics_get_value_from_synclient ("MaxTapTime") > 0 &&
++			g_synaptics_get_value_from_synclient ("TapButton1") > 0);
+ 	}
+ 	else
+ 	{
+-		return SYNSHM(synaptics)->tap_time > 0;
++		return SYNSHM(synaptics)->tap_time > 0 &&
++			SYNSHM(synaptics)->tap_action[OneFinger] > 0; /* F1_TAP */
+ 	}
+ }
+ 
+-- 
+1.6.0.6
+
