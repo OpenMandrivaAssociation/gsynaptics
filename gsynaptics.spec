@@ -1,6 +1,6 @@
 %define name gsynaptics
 %define version 0.9.14
-%define release 7
+%define release 8
 
 Summary: Tool for Synaptics touchpad driver
 Name: %{name}
