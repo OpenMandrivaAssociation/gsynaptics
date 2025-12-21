@@ -25,6 +25,11 @@ Patch102: gsynaptics-0.9.14-dont-reset-taptime.patch
 License: GPLv2+
 Group: System/Configuration/Hardware
 Url: https://gsynaptics.sourceforge.jp/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: pkgconfig(libgnomeui-2.0) pkgconfig(gnome-doc-utils) pkgconfig(libglade-2.0)
 buildrequires: perl(XML::Parser)
 
